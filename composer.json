@@ -1,0 +1,29 @@
+{
+  "name": "iampersistent/swiftmailer-component",
+  "type": "library",
+  "description": "factories and helpers for swiftmailer",
+  "keywords": ["swiftmailer", "factory"],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1",
+    "swiftmailer/swiftmailer": "^6.0"
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.4"
+  },
+  "repositories": {
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "IamPersistent\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Fixture\\": "tests/_support/Fixture",
+      "Tests\\Functional\\": "tests/functional",
+      "Tests\\Unit\\": "tests/unit"
+    }
+  }
+}
