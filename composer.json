@@ -6,7 +6,9 @@
   "license": "MIT",
   "require": {
     "php": ">=7.1",
-    "swiftmailer/swiftmailer": "^6.0"
+    "swiftmailer/swiftmailer": "^6.0",
+    "psr/container": "^1.0@dev",
+    "xaddax/factories": "dev-master"
   },
   "require-dev": {
     "codeception/codeception": "^2.4"
@@ -16,7 +18,7 @@
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "IamPersistent\\": "src/"
+      "IamPersistent\\SwiftMailer\\": "src/"
     }
   },
   "autoload-dev": {
