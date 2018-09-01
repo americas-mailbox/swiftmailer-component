@@ -8,7 +8,8 @@
     "php": ">=7.1",
     "swiftmailer/swiftmailer": "^6.0",
     "psr/container": "^1.0@dev",
-    "xaddax/factories": "dev-master"
+    "xaddax/factories": "dev-master",
+    "twig/twig": "^2.0"
   },
   "require-dev": {
     "codeception/codeception": "^2.4"

@@ -6,23 +6,41 @@ namespace IamPersistent\SwiftMailer\Interactor;
 use IamPersistent\SwiftMailer\Context\EmailContext;
 use Swift_Mailer;
 use Swift_Message;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 
 final class SendEmail
 {
-    private $directories;
     private $swiftMailer;
+    private $twig;
 
     public function __construct(Swift_Mailer $swiftMailer, array $directories)
     {
-        $this->directories = $directories;
+        $twigOptions = [
+            'autoescape' => false,
+        ];
+        $loader = new Twig_Loader_Filesystem($directories);
+        $this->twig = new Twig_Environment($loader, $twigOptions);
         $this->swiftMailer = $swiftMailer;
     }
 
     public function send(EmailContext $context)
     {
+        $body = $context->getBody();
+        $subject = $context->getSubject();
+        if ($template = $context->getTemplate()) {
+            $templateContext = [
+                'body' => $body,
+                'subject' => $subject,
+            ];
+            $body = $this->twig->render($template, $templateContext);
+        }
+
         $message = (new Swift_Message)
-            ->setTo((new PreparePartyForMessage)($context->getTo()))
-            ->setSubject($context->getSubject());
+            ->setBody($body)
+            ->setFrom((new PreparePartyForMessage)($context->getFrom()))
+            ->setSubject($subject)
+            ->setTo((new PreparePartyForMessage)($context->getTo()));
 
         $this->swiftMailer->send($message);
     }
