@@ -7,6 +7,8 @@ final class EmailContext
 {
     /** @var string */
     private $body;
+    /** @var array */
+    private $bodyContext;
     /** @var string */
     private $charset;
     /** @var string */
@@ -28,6 +30,18 @@ final class EmailContext
     public function setBody(string $body): EmailContext
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    public function getBodyContext(): array
+    {
+        return $this->bodyContext;
+    }
+
+    public function setBodyContext(array $bodyContext): EmailContext
+    {
+        $this->bodyContext = $bodyContext;
 
         return $this;
     }

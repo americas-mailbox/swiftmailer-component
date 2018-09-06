@@ -29,10 +29,10 @@ final class SendEmail
         $body = $context->getBody();
         $subject = $context->getSubject();
         if ($template = $context->getTemplate()) {
-            $templateContext = [
-                'body' => $body,
-                'subject' => $subject,
-            ];
+            $templateContext = array_merge([
+                '_body' => $body,
+                '_subject' => $subject,
+            ], []);
             $body = $this->twig->render($template, $templateContext);
         }
 
