@@ -11,9 +11,19 @@ final class SwiftMailerFactory
 {
     public function __invoke(ContainerInterface $container): Swift_Mailer
     {
-        $config = (new GatherConfigValues)($container, 'swiftmailer');
+        $defaults = [
+            'authMode'   => null,
+            'encryption' => null,
+            'host'       => null,
+            'password'   => null,
+            'port'       => null,
+            'sourceIp'   => null,
+            'timeout'    => 30,
+            'username'   => null,
+        ];
+        $config = (new GatherConfigValues)($container, 'swiftmailer', $defaults);
 
-        $transportFactoryClass = ucfirst(strtolower($config['transport'])) . 'TransportFactory';
+        $transportFactoryClass = ucfirst(strtolower($config['transport'])).'TransportFactory';
         $transport = (new $transportFactoryClass)($config);
 
         return new Swift_Mailer($transport);
