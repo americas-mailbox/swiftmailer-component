@@ -16,13 +16,13 @@ final class EmailContext
     /** @var PartyContext[] */
     private $from = [];
     /** @var string */
-    private $subject;
+    private $subject = '';
     /** @var string */
     private $template;
     /** @var PartyContext[] */
     private $to = [];
 
-    public function getBody(): string
+    public function getBody(): ?string
     {
         return $this->body;
     }
@@ -46,7 +46,7 @@ final class EmailContext
         return $this;
     }
 
-    public function getCharset(): string
+    public function getCharset(): ?string
     {
         return $this->charset;
     }

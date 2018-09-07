@@ -13,17 +13,17 @@ final class SwiftMailerFactory
     {
         $defaults = [
             'authMode'   => null,
-            'encryption' => null,
+            'encryption' => '',
             'host'       => null,
             'password'   => null,
             'port'       => null,
-            'sourceIp'   => null,
+            'sourceIp'   => '',
             'timeout'    => 30,
             'username'   => null,
         ];
         $config = (new GatherConfigValues)($container, 'swiftmailer', $defaults);
 
-        $transportFactoryClass = ucfirst(strtolower($config['transport'])).'TransportFactory';
+        $transportFactoryClass = 'IamPersistent\\SwiftMailer\\Factory\\' . ucfirst(strtolower($config['transport'])).'TransportFactory';
         $transport = (new $transportFactoryClass)($config);
 
         return new Swift_Mailer($transport);
