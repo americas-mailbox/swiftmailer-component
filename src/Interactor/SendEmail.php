@@ -32,7 +32,7 @@ final class SendEmail
             $templateContext = array_merge([
                 '_body' => $body,
                 '_subject' => $subject,
-            ], []);
+            ], $context->getBodyContext());
             $body = $this->twig->render($template, $templateContext);
         }
 
