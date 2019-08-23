@@ -15,6 +15,8 @@ final class EmailContext
     private $contentType;
     /** @var PartyContext[] */
     private $from = [];
+    /** @var PartyContext[] */
+    private $replyTo = [];
     /** @var string */
     private $subject = '';
     /** @var string */
@@ -78,6 +80,22 @@ final class EmailContext
     public function setFrom(array $from): EmailContext
     {
         $this->from = $from;
+
+        return $this;
+    }
+
+    public function getReplyTo(): array
+    {
+        if (empty($this->replyTo)) {
+            return $this->from;
+        }
+
+        return $this->replyTo;
+    }
+
+    public function setReplyTo(array $replyTo): EmailContext
+    {
+        $this->replyTo = $replyTo;
 
         return $this;
     }

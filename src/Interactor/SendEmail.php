@@ -39,6 +39,7 @@ final class SendEmail
         $message = (new Swift_Message)
             ->setBody($body, 'text/html')
             ->setFrom((new PreparePartyForMessage)($context->getFrom()))
+            ->setReplyTo((new PreparePartyForMessage)($context->getReplyTo()))
             ->setSubject($subject)
             ->setTo((new PreparePartyForMessage)($context->getTo()));
 
