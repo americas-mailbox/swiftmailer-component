@@ -42,6 +42,9 @@ final class SendEmail
             ->setReplyTo((new PreparePartyForMessage)($context->getReplyTo()))
             ->setSubject($subject)
             ->setTo((new PreparePartyForMessage)($context->getTo()));
+        if (!empty($context->getBcc())) {
+            $message->setBcc((new PreparePartyForMessage)($context->getBcc()));
+        }
 
         $this->swiftMailer->send($message);
     }

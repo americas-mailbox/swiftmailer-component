@@ -5,6 +5,8 @@ namespace IamPersistent\SwiftMailer\Context;
 
 final class EmailContext
 {
+    /** @var \IamPersistent\SwiftMailer\Context\PartyContext[] */
+    private $bcc = [];
     /** @var string */
     private $body;
     /** @var array */
@@ -13,16 +15,28 @@ final class EmailContext
     private $charset;
     /** @var string */
     private $contentType;
-    /** @var PartyContext[] */
+    /** @var \IamPersistent\SwiftMailer\Context\PartyContext[] */
     private $from = [];
-    /** @var PartyContext[] */
+    /** @var \IamPersistent\SwiftMailer\Context\PartyContext[] */
     private $replyTo = [];
     /** @var string */
     private $subject = '';
     /** @var string */
     private $template;
-    /** @var PartyContext[] */
+    /** @var \IamPersistent\SwiftMailer\Context\PartyContext[] */
     private $to = [];
+
+    public function getBcc(): array
+    {
+        return $this->bcc;
+    }
+
+    public function setBcc(array $bcc): EmailContext
+    {
+        $this->bcc = $bcc;
+
+        return $this;
+    }
 
     public function getBody(): ?string
     {
