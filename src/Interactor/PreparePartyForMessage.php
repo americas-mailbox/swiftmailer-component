@@ -13,13 +13,12 @@ final class PreparePartyForMessage
 
         /** @var PartyContext $party */
         foreach ($parties as $party) {
-            $email = $party->getEmail();
-            if ($name = $party->getName()) {
-                $returnData[$email] = $name;
-            } else {
-                $returnData[] = $email;
-            }
-        }
+          if($party && $party->getEmail() && $party->getName()){
+              $returnData[$party->getEmail()] = $party->getName();
+          }elseif($party && $party->getEmail()){
+              $returnData[] = $party->getEmail();
+          }
+      }
 
         return $returnData;
     }
