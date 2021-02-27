@@ -6,8 +6,8 @@ namespace IamPersistent\SwiftMailer\Interactor;
 use IamPersistent\SwiftMailer\Context\EmailContext;
 use Swift_Mailer;
 use Swift_Message;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 final class SendEmail
 {
@@ -19,8 +19,8 @@ final class SendEmail
         $twigOptions = [
             'autoescape' => false,
         ];
-        $loader = new Twig_Loader_Filesystem($directories);
-        $this->twig = new Twig_Environment($loader, $twigOptions);
+        $loader = new FilesystemLoader($directories);
+        $this->twig = new Environment($loader, $twigOptions);
         $this->swiftMailer = $swiftMailer;
     }
 
